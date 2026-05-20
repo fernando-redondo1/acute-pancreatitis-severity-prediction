@@ -16,6 +16,14 @@ This project applies machine learning to **routine admission blood tests** to pr
 
 ---
 
+## Motivation
+
+This project has a personal meaning to me. My father was hospitalised with acute pancreatitis, and living through those first uncertain hours — while doctors waited to determine how serious it would become — made me understand firsthand why early prediction matters. Those 48 hours feel very long when someone you love is the patient.
+
+This is my attempt to apply what I have learned in data science and AI to a problem I know is real.
+
+---
+
 ## Key Results
 
 | KPI | Value |
@@ -94,7 +102,7 @@ Raw Excel (1,206 patients)
 │   └── clean/           ← processed CSV
 └── dashboard/
     ├── pancreatitis.pbix      ← Power BI dashboard (open with Power BI Desktop)
-    ├── feature_importance.png
+    ├── feature_importance.png     ← feature importance chart
     └── predictions.csv
 ```
 
