@@ -1,0 +1,22 @@
+# Patient data — excluded from public repository
+data/raw/
+data/clean/
+dashboard/predictions.csv
+dashboard/predicciones.csv
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.env
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Internal planning docs
+docs/superpowers/
