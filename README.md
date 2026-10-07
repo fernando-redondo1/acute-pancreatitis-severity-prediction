@@ -52,4 +52,79 @@ Es mi forma de aplicar lo que he aprendido en ciencia de datos e IA a un problem
 | 8 | Bilirrubina total | 7 % |
 | 9 | Creatinina | 5 % |
 
-El calcio es la variable más importante: la
+El calcio es la variable más importante: la hipocalcemia es un marcador directo de necrosis pancreática y aquí se confirma como la señal de alerta temprana más fuerte.
+
+---
+
+## Pipeline
+
+```
+Excel original (1.206 pacientes)
+       │
+       ▼
+  ETL — Python / pandas
+  · Eliminación de identificadores de pacientes
+  · Normalización de los nombres de columnas clínicas
+  · Filtrado de registros anómalos (amilasa < 50 U/L)
+       │
+       ▼
+  Base de datos MySQL
+  · Almacenamiento estructurado de los datos limpios
+  · Fuente de datos para Power BI
+       │
+       ▼
+  Clasificador Random Forest
+  · 9 biomarcadores como variables
+  · SMOTE para el desequilibrio de clases
+  · División estratificada 80/20 entre entrenamiento y prueba
+       │
+       ▼
+  Cuadro de mando en Power BI
+  · Visión general · Análisis clínico
+  · Resultados IA · Predicciones por paciente
+  · Filtros en tiempo real por sexo y tipo de predicción
+```
+
+---
+
+## Estructura del proyecto
+
+```
+├── notebooks/
+│   └── acute_pancreatitis_severity_prediction.ipynb  ← informe ejecutivo
+├── etl/
+│   ├── etl.py           ← extracción, limpieza y exportación a CSV
+│   └── cargar_mysql.py  ← carga de los datos limpios en MySQL
+├── modelo/
+│   └── modelo_rf.py     ← entrenamiento del Random Forest y exportación de predicciones
+└── dashboard/
+    ├── pancreatitis.pbix          ← cuadro de mando (se abre con Power BI Desktop)
+    └── feature_importance.png     ← gráfico de importancia de variables
+```
+
+> **Cuadro de mando de Power BI:** descarga `dashboard/pancreatitis.pbix` y ábrelo con [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (gratuito). Tiene 4 páginas: Visión general · Análisis clínico · Resultados IA · Predicciones por paciente, con filtros en tiempo real por sexo y tipo de predicción.
+
+---
+
+## Tecnologías
+
+| Capa | Tecnología |
+|---|---|
+| Procesamiento de datos | Python · pandas |
+| Base de datos | MySQL |
+| Machine Learning | scikit-learn · imbalanced-learn (SMOTE) |
+| Visualización | Power BI · matplotlib |
+
+---
+
+## Datos
+
+Dataset público obtenido de Kaggle: [NOMBRE DEL DATASET](ENLACE-AL-DATASET), bajo licencia [LICENCIA]. Los datos fueron publicados por sus autores ya anonimizados; los identificadores de paciente son los del dataset original.
+
+---
+
+## Autor
+
+**Fernando Redondo Pérez**
+Proyecto final · [NOMBRE DEL CURSO]
+2026
