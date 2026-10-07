@@ -1,5 +1,5 @@
-# Acute Pancreatitis Severity Prediction
-### Big Data & AI Case Study · 1,206 real patients · AUC-ROC 0.92
+# Predicción de la gravedad de la pancreatitis aguda
+### Caso práctico de Big Data e IA · 1.206 pacientes reales · AUC-ROC 0,92
 
 ![Python](https://img.shields.io/badge/Python-3.9-blue?logo=python&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-orange?logo=mysql&logoColor=white)
@@ -8,121 +8,48 @@
 
 ---
 
-## Overview
+## Resumen
 
-Acute pancreatitis carries high mortality risk when not detected early. Current clinical scoring systems (Ranson, APACHE II) require **48-hour observation** before a severity assessment can be made.
+La pancreatitis aguda tiene un alto riesgo de mortalidad si no se detecta a tiempo. Los sistemas de puntuación clínica actuales (Ranson, APACHE II) necesitan **48 horas de observación** antes de poder valorar la gravedad.
 
-This project applies machine learning to **routine admission blood tests** to predict whether a patient will follow a severe or mild clinical course — at the moment of first contact, not 48 hours later.
-
----
-
-## Motivation
-
-This project has a personal meaning to me. My father was hospitalised with acute pancreatitis, and living through those first uncertain hours — while doctors waited to determine how serious it would become — made me understand firsthand why early prediction matters. Those 48 hours feel very long when someone you love is the patient.
-
-This is my attempt to apply what I have learned in data science and AI to a problem I know is real.
+Este proyecto aplica Machine Learning a los **análisis de sangre rutinarios del ingreso** para predecir si un paciente evolucionará hacia un cuadro grave o leve en el primer contacto, no 48 horas después.
 
 ---
 
-## Key Results
+## Motivación
 
-| KPI | Value |
+Este proyecto tiene un significado personal para mí. Mi padre estuvo hospitalizado por una pancreatitis aguda, y vivir esas primeras horas de incertidumbre, mientras los médicos esperaban para saber hasta qué punto sería grave, me hizo entender de primera mano por qué importa la predicción temprana. Esas 48 horas se hacen muy largas cuando el paciente es alguien a quien quieres.
+
+Es mi forma de aplicar lo que he aprendido en ciencia de datos e IA a un problema que sé que es real.
+
+---
+
+## Resultados principales
+
+| Indicador | Valor |
 |---|---|
-| AUC-ROC | **0.92** |
-| Precision (Severe) | 0.91 |
-| Recall (Severe) | 0.93 |
-| Patients analysed | 1,206 |
-| Biomarkers used | 9 |
+| AUC-ROC | **0,92** |
+| Precisión (graves) | 0,91 |
+| Sensibilidad / Recall (graves) | 0,93 |
+| Pacientes analizados | 1.206 |
+| Biomarcadores utilizados | 9 |
 
-> An AUC-ROC of 0.92 means the model correctly ranks a severe case above a mild case **92% of the time** — diagnostic-grade accuracy using only standard lab values.
+> Un AUC-ROC de 0,92 significa que el modelo ordena correctamente un caso grave por encima de uno leve el **92 % de las veces**, usando solo valores de laboratorio estándar. Son resultados sobre un conjunto de prueba interno; un uso clínico real requeriría validación externa.
 
 ---
 
-## Top Predictive Features
+## Variables más predictivas
 
-| Rank | Biomarker | Importance |
+| Posición | Biomarcador | Importancia |
 |---|---|---|
-| 1 | Calcium | 22% |
-| 2 | Glucose | 15% |
-| 3 | CRP | 13% |
-| 4 | Bilirubin | 11% |
-| 5 | LDH | 10% |
-| 6 | Albumin | 9% |
-| 7 | WBC | 8% |
-| 8 | Total Bilirubin | 7% |
-| 9 | Creatinine | 5% |
+| 1 | Calcio | 22 % |
+| 2 | Glucosa | 15 % |
+| 3 | PCR | 13 % |
+| 4 | Bilirrubina | 11 % |
+| 5 | LDH | 10 % |
+| 6 | Albúmina | 9 % |
+| 7 | Leucocitos | 8 % |
+| 8 | Bilirrubina total | 7 % |
+| 9 | Creatinina | 5 % |
 
-Calcium leads — hypocalcemia is a direct marker of pancreatic necrosis and is independently confirmed here as the strongest early-warning signal.
-
----
-
-## Pipeline
-
-```
-Raw Excel (1,206 patients)
-       │
-       ▼
-  ETL — Python / pandas
-  · Remove patient identifiers
-  · Standardize clinical column names
-  · Filter anomalous records (amylase < 50 U/L)
-       │
-       ▼
-  MySQL Database
-  · Structured storage of clean patient data
-  · Source for Power BI connectivity
-       │
-       ▼
-  Random Forest Classifier
-  · 9 biomarker features
-  · SMOTE for class imbalance
-  · 80/20 stratified train-test split
-       │
-       ▼
-  Power BI Dashboard
-  · Visión General · Análisis Clínico
-  · Resultados IA · Predicciones por Paciente
-  · Real-time filters by sex and prediction type
-```
-
----
-
-## Project Structure
-
-```
-├── notebooks/
-│   └── acute_pancreatitis_severity_prediction.ipynb  ← executive report
-├── etl/
-│   ├── etl.py           ← extract, clean, export CSV
-│   └── cargar_mysql.py  ← load clean data into MySQL
-├── modelo/
-│   └── modelo_rf.py     ← train Random Forest, export predictions
-├── data/
-│   ├── raw/             ← original Excel dataset
-│   └── clean/           ← processed CSV
-└── dashboard/
-    ├── pancreatitis.pbix      ← Power BI dashboard (open with Power BI Desktop)
-    ├── feature_importance.png     ← feature importance chart
-    └── predictions.csv
-```
-
-> **Power BI Dashboard:** download `dashboard/pancreatitis.pbix` and open it with [Power BI Desktop](https://powerbi.microsoft.com/desktop/) (free). Includes 4 pages: General Overview · Clinical Analysis · AI Results · Patient Predictions — with real-time filters by sex and prediction type.
-
----
-
-## Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Data processing | Python · pandas |
-| Database | MySQL |
-| Machine learning | scikit-learn · imbalanced-learn (SMOTE) |
-| Visualization | Power BI · matplotlib |
-
----
-
-## Author
-
-**Fernando Redondo Pérez**  
-University capstone project · Artificial Intelligence & Big Data  
-2026
+El calcio es la variable más importante: la
