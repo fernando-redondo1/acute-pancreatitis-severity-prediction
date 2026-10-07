@@ -119,12 +119,12 @@ Excel original (1.206 pacientes)
 
 ## Datos
 
-Dataset público obtenido de Kaggle: [NOMBRE DEL DATASET](ENLACE-AL-DATASET), bajo licencia [LICENCIA]. Los datos fueron publicados por sus autores ya anonimizados; los identificadores de paciente son los del dataset original.
+Dataset público obtenido de Kaggle, procedente del estudio *Accurate prediction of acute pancreatitis severity with integrative blood molecular measurements* (Sun et al., Aging, 2021; DOI: [10.18632/aging.202689](https://doi.org/10.18632/aging.202689)). Los datos fueron publicados ya anonimizados; los identificadores de paciente son los del dataset original.
 
 ---
 
 ## Autor
 
 **Fernando Redondo Pérez**
-Proyecto final · [NOMBRE DEL CURSO]
+Proyecto final · Inteligencia Artificial y Big Data
 2026
